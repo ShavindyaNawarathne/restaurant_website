@@ -1,0 +1,59 @@
+@font-face {
+    font-family: 'karla';
+    src: url('../fonts/Karla-Bold.ttf'),
+         url('../fonts/Karla-ExtraBold.ttf'),
+         url('../fonts/Karla-Medium.ttf'),
+         url('../fonts/Karla-Regular.ttf');
+} 
+@font-face {
+    font-family: 'markazi-text';
+    src: url('../fonts/MarkaziText-Medium.ttf'),
+         url('../fonts/MarkaziText-Regular.ttf');
+}
+
+:root{
+    /*colors*/
+    --primary-color-one:#495E57;
+    --primary-color-two:#F4CE14;
+    --sec-color-one:#EE9972;
+    --sec-color-two:#FBDABB;
+    --sec-color-three:#EDEFEE;
+    --sec-color-four:#333333;
+}
+/*text */
+.display-text {
+    font-family: 'markazi-text';
+    font-weight: medium;
+    font-size: 64;
+}
+.subtitle-text {
+    font-family: 'markazi-text';
+    font-weight: 400;
+    font-size: 40;
+}
+.lead-text {
+    font-family: 'karla';
+    font-weight: 500;
+    font-size: 18;
+}
+
+.section-title {
+    font-family: 'karla';
+    font-weight: 800;
+    font-size: 20;
+}
+.card-title {
+    font-family: 'karla';
+    font-weight: 700;
+    font-size: 18;
+}
+.paragraph {
+    font-family: 'karla';
+    font-weight: 400;
+    font-size: 16;
+}
+.highlight-text {
+    font-family: 'karla';
+    font-weight: 500;
+    font-size: 16;
+}

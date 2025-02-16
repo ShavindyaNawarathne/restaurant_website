@@ -1,17 +1,15 @@
 import './App.css';
 import HeaderComp from './components/Header';
-import Navbar from './components/Nav';
 import MainComp from './components/Main';
 import FooterComp from './components/Footer';
 
 function App() {
   return(
-    <>
+    <div className='grid-container'>
       <HeaderComp />
-      <Navbar />
       <MainComp />
       <FooterComp />
-    </>
+    </div>
   );
 }
 
