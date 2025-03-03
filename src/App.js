@@ -1,15 +1,8 @@
 import './App.css';
-import HeaderComp from './components/Header';
-import MainComp from './components/Main';
-import FooterComp from './components/Footer';
-
+import Main from './components/Main';
 function App() {
   return(
-    <div className='grid-container'>
-      <HeaderComp />
-      <MainComp />
-      <FooterComp />
-    </div>
+    <Main />
   );
 }
 
