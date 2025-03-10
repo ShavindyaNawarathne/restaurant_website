@@ -4,30 +4,12 @@ import Logginpage from '../pages/Loggin';
 import Bookingpage from '../pages/Booking';
 import Homepage from '../pages/Home';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { useReducer } from 'react';
+import { useReducer, useEffect,useState } from 'react';
 
-const initializeTimes = () => {
-  const today = new Date();
-  const initialState = [];
-
-  for(let i = 0; i < 30; i++){
-    const date = new Date(today);
-    date.setDate(today.getDate() + i);
-    const currDate = date.toISOString().split("T")[0]
-    initialState.push({
-      date: currDate,
-      "17.00": true,
-      "18.00":true,
-      "19.00": true,
-      "20.00": true,
-      "21.00": true,
-      "22.00": true
-    })
-  }
-  return initialState;
-}
 const updateTimes= (state, action) =>{
   switch(action.type) {
+    case "SET_SLOTS" :
+      return action.payload;
     case "SELECTED" : {
       return state.map((entry) => {
         if(entry.date === action.payload.date) {
@@ -42,11 +24,16 @@ const updateTimes= (state, action) =>{
 }
 
 const Main = () => {
-  const[state, dispatch] = useReducer(updateTimes,[], initializeTimes);
-  console.log("Initialized state:", state);
-console.log("State type:", typeof state);
-console.log("Is Array?", Array.isArray(state));
-
+  const[state, dispatch] = useReducer(updateTimes,[]);
+  const [selectedDate, setSelectedDate] = useState("2025-02-15");
+  useEffect(() => {
+    if (selectedDate && window.fetchAPI) {
+      window.fetchAPI(selectedDate).then((availableTimes) => {
+        console.log("API Response:", availableTimes);
+        dispatch({ type: "SET_SLOTS", payload: availableTimes });
+      }).catch(error => console.error("Error fetching slots:", error));
+    }
+  }, [selectedDate]);
   const handleOptions = (date, time) => {
       dispatch({type : "SELECTED", payload : {date, time} });
   }
@@ -57,7 +44,7 @@ console.log("Is Array?", Array.isArray(state));
             <Route path="/about" element={< Aboutpage/>} />
             <Route path="/menu" element={<Menupage />} />
             <Route path="/login" element={<Logginpage />} />
-            <Route path="/booking" element={<Bookingpage state = {state} handleOptions  = {handleOptions}/>} />
+            <Route path="/booking" element={<Bookingpage state = {state} handleOptions  = {handleOptions} setSelectedDate = {setSelectedDate}/>} />
           </Routes>
         </Router>
       );
