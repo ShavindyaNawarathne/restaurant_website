@@ -1,6 +1,6 @@
-import Form from "../components/BookingForm";
+import BookingForm from '../components/BookingForm'
 
-export default function Bookingpage ({state, handleOptions, setSelectedDate}) {
+export default function Bookingpage ({state, handleOptions, setSelectedDate, submitForm}) {
     return(
         <>
             <h1 className="display-text">Little lemon</h1>
@@ -10,7 +10,7 @@ export default function Bookingpage ({state, handleOptions, setSelectedDate}) {
                 <img src="/images/restaurant chef B.jpg" alt="chef" />
                 <img src="/images/restaurant.jpg" alt="restaurant"/>
             </div>
-            <Form state={state} handleOptions= {handleOptions} setSelectedDate = {setSelectedDate} />
+            <BookingForm state={state} handleOptions= {handleOptions} setSelectedDate = {setSelectedDate} submitForm = {submitForm}/>
         </>
     )
 }

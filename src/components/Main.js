@@ -3,50 +3,83 @@ import Menupage from '../pages/Menu';
 import Logginpage from '../pages/Loggin';
 import Bookingpage from '../pages/Booking';
 import Homepage from '../pages/Home';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { useReducer, useEffect,useState } from 'react';
+import HeaderComp from './Header.js';
+import BookingConfirmation from '../pages/ConfirmedBooking.js';
+import {Route, Routes } from 'react-router-dom';
+import { useReducer, useEffect, useState } from 'react';
+import {fetchAPI, submitAPI} from './api.js'
+import { useNavigate } from 'react-router-dom';
 
-const updateTimes= (state, action) =>{
-  switch(action.type) {
-    case "SET_SLOTS" :
+console.log("type func: " , typeof fetchAPI)
+const updateTimes = (state, action) => {
+  switch (action.type) {
+    case 'SET_SLOTS':
       return action.payload;
-    case "SELECTED" : {
+    case 'SELECTED': {
       return state.map((entry) => {
-        if(entry.date === action.payload.date) {
-          return{...entry, [action.payload.time]:!entry[action.payload.time]}
+        if (entry.date === action.payload.date) {
+          return { ...entry, [action.payload.time]: !entry[action.payload.time] };
         } else {
           return entry;
         }
-      })
+      });
     }
-    default : return state;
+    default:
+      return state;
   }
-}
+};
 
 const Main = () => {
-  const[state, dispatch] = useReducer(updateTimes,[]);
-  const [selectedDate, setSelectedDate] = useState("2025-02-15");
+  const [state, dispatch] = useReducer(updateTimes, []);
+  const [selectedDate, setSelectedDate] = useState('');
+
+  console.log("type: " + typeof window.fetchAPI)
   useEffect(() => {
-    if (selectedDate && window.fetchAPI) {
-      window.fetchAPI(selectedDate).then((availableTimes) => {
-        console.log("API Response:", availableTimes);
-        dispatch({ type: "SET_SLOTS", payload: availableTimes });
-      }).catch(error => console.error("Error fetching slots:", error));
+    if (selectedDate && fetchAPI) {
+      const availableTimes = fetchAPI(new Date(selectedDate));
+      dispatch({ type: "SET_SLOTS", payload: availableTimes });
+    } else {
+      console.error("fetchAPI is not defined");
     }
-  }, [selectedDate]);
+  }, [selectedDate]); 
+  console.log("date" + selectedDate)
+
   const handleOptions = (date, time) => {
-      dispatch({type : "SELECTED", payload : {date, time} });
-  }
-    return(
-        <Router>
-          <Routes>
-            <Route path="/" element={<Homepage />} />
-            <Route path="/about" element={< Aboutpage/>} />
-            <Route path="/menu" element={<Menupage />} />
-            <Route path="/login" element={<Logginpage />} />
-            <Route path="/booking" element={<Bookingpage state = {state} handleOptions  = {handleOptions} setSelectedDate = {setSelectedDate}/>} />
-          </Routes>
-        </Router>
-      );
-}
+    dispatch({ type: 'SELECTED', payload: { date, time } });
+  };
+  const navigate = useNavigate();
+  const submitForm = (formData) => {
+    console.log("submitting", formData);
+      if (submitAPI(formData)) {
+       navigate('/booking/confirmation', {state: {formData} })
+      } else {
+        console.error('Error: Form submission failed');
+      }
+    };
+
+  return (
+    <>
+      <HeaderComp />
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/about" element={<Aboutpage />} />
+        <Route path="/menu" element={<Menupage />} />
+        <Route path="/login" element={<Logginpage />} />
+        <Route
+          path="/booking"
+          element={
+            <Bookingpage
+              state={state}
+              handleOptions={handleOptions}
+              setSelectedDate={setSelectedDate}
+              submitForm={submitForm}
+            />
+          }
+        />
+        <Route path="/booking/confirmation" element={<BookingConfirmation />} />
+      </Routes>
+    </>
+  );
+};
+
 export default Main;

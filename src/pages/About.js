@@ -1,7 +1,7 @@
 export default function Aboutpage() {
     return(
         <>
-        <testing/>
+        <h1>testing</h1>
         </>
     )
 }
