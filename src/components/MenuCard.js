@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 export default function MenuCardComp() {
     const menu = [
         {
@@ -27,17 +27,19 @@ export default function MenuCardComp() {
     ]
     return(
         <>
-            {menu.map((dish, index) => (
+            {menu.map((dish) => (
                 <article id = "menu-card">
-                <img src={menu[index].src} alt="greek-salad" height="200px"/>
+                <img src={dish.src} alt="greek-salad" height="200px"/>
                 <div className="dish-details lead-text">
-                    <h3>{menu[index].name}</h3>
-                    <h3>{menu[index].price}</h3>
+                    <h3>{dish.name}</h3>
+                    <h3>{dish.price}</h3>
                 </div>
-                <p className="paragraph">{menu[index].description}</p>
                 <div>
-                <h4 className="highlight-text">some text</h4>
-                <h4><FontAwesomeIcon icon="fa-solid fa-champagne-glasses" /></h4>
+                <p className="paragraph">{dish.description}</p>
+                </div>
+                <div className="menu-bottom">
+                <h4 className="highlight-text" >Order a Delivery</h4>
+                <h4> <FontAwesomeIcon icon={faCartShopping} /></h4>
                 </div>
             </article>
             ))}

@@ -1,7 +1,6 @@
+import AboutComp from "../components/About"
 export default function Aboutpage() {
     return(
-        <>
-        <h1>testing</h1>
-        </>
+        <AboutComp />
     )
 }
