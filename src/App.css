@@ -13,22 +13,14 @@ body {
   display: grid;
   height:100vh;
   grid-template-columns: 1fr;
-  grid-template-rows: 0.2fr 2fr 0.5fr;
+  grid-template-rows: 0.4fr 2fr 0.4fr;
   grid-template-areas:
   'header',
   'main',
   'footer';
   gap:10px;
 }
-button {
-  background-color: var(--primary-color-two);
-  border-radius: 16px;
-  border: none;
-  height:25px;
-  width: 150px;
-  text-align: center;
-  cursor: pointer;
-}
+
 li{
   list-style: none;
 }
@@ -36,12 +28,13 @@ li{
 #main {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 0.8fr 1.3fr 0.6fr 0.8fr;
+  grid-template-rows: 0.25fr 0.25fr 0.25fr 0.25fr;
   grid-template-areas:
   'cover',
   'menu',
   'reviews',
   'about';
+  gap: 50px;
 }
 /*header styling*/
 header {
@@ -70,6 +63,10 @@ header > .nav-bar {
 a {
   text-decoration: none;
   color: var(--sec-color-four);
+}
+a:hover{
+  text-decoration: underline;
+  color: var(--sec-color-one);
 }
 .hamburger-menu {
   display: none;
@@ -126,27 +123,37 @@ a {
 #hero-card > h1{
   color:var(--primary-color-two);
 }
-#hero-card > h3 {
-  color:var(--sec-color-three);
+#hero-card > h2 {
+  color:var(--primary-color-two);
+  text-align: left;
 }
 #hero-card > p{
   color:var(--sec-color-three);
 }
 #hero-card > button {
   margin-top: 30px;
-
+  background-color: var(--primary-color-two);
+  border-radius: 16px;
+  border: none;
+  height:30px;
+  width: 150px;
+  text-align: center;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5px;
 }
 #hero-img {
   width:33vw;
   height: 100%;
   padding-top: 30px;
-  border-radius: 15px;
 }
 #hero-img img {
   width:100%;
   min-width: 250px;
   max-width: 300px;
-  min-height: 250px;
+  height: 300px;
+  border-radius: 16px;
 }
 /*Menu styling */
 .menu-section{
@@ -156,10 +163,11 @@ a {
 }
 .menu-section > h1 {
   color:var(--primary-color-one);
+  margin-bottom: 5px;
 }
 #menu-card {
-  max-width:33%;
-  min-height: 90%;
+  height:400px;
+  width: 30vw;
   padding: 5px;
   border:1px solid black;
   border-radius: 7px;
@@ -177,17 +185,30 @@ a {
 .menu-flex {
   display: flex;
   gap: 10px;
+  justify-content: space-around;
+  align-items: flex-start;
 }
 
 .menu-bottom{
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap:10px;
+  margin-top: 10px;
+}
+@media(max-width:780px){
+  .menu-flex{
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  #menu-card{
+    min-width: 40vw;
+  }
 }
 /*reviews styling*/
 #reviews {
-  max-width: 100vw;
+  width: 100vw;
   margin-top: 10px;
   margin-left: 10px;
   margin-right:4px;
@@ -196,14 +217,16 @@ a {
   display: flex;
   gap: 10px;
 }
-#reviews > h1 {
+#reviews > h2 {
   color:var(--primary-color-one);
+  margin-bottom: 5px;
 }
 .review_box > article {
   background-color: var( --sec-color-two);
   border-radius: 10px;
   text-align: center;
   width:25vw;
+  flex: 2;
 }
 .review_box > article > img {
   border-radius: 50px;
@@ -211,6 +234,7 @@ a {
   height:80px;
   width: 80px;
   margin-top: 5px;
+  flex: 2;
 }
 /*about styling*/
 #about {
@@ -226,37 +250,103 @@ a {
   color:var(--primary-color-one);
 }
 .about-images {
+  display: block;
   margin-left: auto;
   margin-right: auto;
 }
 .about-images > img {
   margin: 10px;
 }
+@media(min-width:1000px){
+  #about {
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: center;
+  }
+  .about-images{
+    flex:2;
+  }
+  .about-text{
+    flex: 1;
+  }
+}
 /* footer styling */
 footer {
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
-  margin-left: 10px;
+  justify-content: space-around;
   margin-right: 10px;
   padding-bottom: 50px;
   max-width: 100vw;
+  background-color: var(--sec-color-two);
 }
-.footer-nav {
+footer li{
+  padding: 5px;
 }
+
 footer  img {
   width:25px;
   height: 25px;
 }
-img {
+/*Form Styling*/
+#booking-page {
+  background-color: var(--primary-color-one);
+  max-width:100vw;
+  height:100vh;
+  color: var(--sec-color-three);
+  text-align: center;
+  text-transform: capitalize;
+}
+#booking-page h1, h3  {
+  text-align: center;
+  margin-left: 10px;
+}
+#booking-page h1{
+  color: var(--primary-color-two);
+  margin-bottom: 0;
+}
+
+#booking-page h3{
+  color: var(--sec-color-one);
+}
+.booking-images {
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  column-gap: 10px;
+  margin: 10px 5px;
+}
+.booking-images img {
   border-radius: 16px;
 }
-form {
+.form-container form {
   display: grid;
   max-width: 200px;
-  gap: 20px;
+  gap: 15px;
+  font-family: 'karla';
+  margin-bottom: 20px;
 }
-input,  select{
+.form-container h4{
+  text-align: left;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  color: var(--sec-color-two);
+}
+.form-container button {
+  background-color: var(--primary-color-two);
+  border-radius: 16px;
+  border: none;
+  height:4vh;
+  width: 150px;
+  text-align: center;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+  color:var(--sec-color-four);
+  font-weight: 700;
+  font-size: 18px;
+}
+.form-container input,  select{
   width : 50vw;
   margin-top: 0;
   margin-left: 20px;
@@ -270,40 +360,39 @@ label {
   text-align: left;
   margin-left: 20px;
 }
-.booking-page {
-  background-color: var(--primary-color-one);
-  width:100vw;
-  height:100vh;
-  color: var(--sec-color-three);
-  text-align: center;
-  text-transform: capitalize;
-}
-.booking-page > h1 {
-  color: var(--primary-color-two);
-}
-.booking-images {
-  height: 20vh;
+
+#confirmation-page {
+  height: 100vh;
   display: flex;
-  justify-content: center;
-  column-gap: 10px;
-  margin: 10px 5px;
-}
-#submit-btn {
-  width: 75vw;
-  height: 5vh;
-  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  gap:10px;
+  background: url('../public/images/restauranfood.jpg');
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  font-size: 24px;
+  
 }
-@media(min-width:780px){
-  #about {
-    flex-direction: row;
-  }
-  .about-images{
-    flex:2;
-  }
-  .about-text{
-    flex: 1;
-  }
+.confimation-details{
+  background-color: var(--sec-color-three);
+  color:var(--sec-color-four);
+  padding: 20px;
+  border-radius: 16px;
+}
+.confirmation-card{
+  background-color: var(--primary-color-one);
+  border-radius: 16px;
+  padding: 10px;
+}
+.confirmation-card > h1 {
+  color: var(--primary-color-two);
+}
+.confirmation-card p {
+  color: var(--sec-color-three);
+  padding: 2px;
+}
+.confirmation-card span {
+  color: var(--sec-color-two);
 }

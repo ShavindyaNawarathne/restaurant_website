@@ -21,7 +21,7 @@ export default function TestimonialsComp() {
 
   return (
     <div id="reviews">
-      <h1 className="section-title">Customer Reviews</h1>
+      <h2 className="section-title">Customer Reviews</h2>
       <div className="review_box">
         {filterReviews.map((review) => (
           <article key={review.id}>
