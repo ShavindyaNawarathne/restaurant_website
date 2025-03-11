@@ -6,9 +6,10 @@ import Homepage from '../pages/Home';
 import HeaderComp from './Header.js';
 import BookingConfirmation from '../pages/ConfirmedBooking.js';
 import {Route, Routes } from 'react-router-dom';
-import { useReducer, useEffect, useState } from 'react';
+import { useReducer, useEffect } from 'react';
 import {fetchAPI, submitAPI} from './api.js'
 import { useNavigate } from 'react-router-dom';
+import React from 'react';
 
 console.log("type func: " , typeof fetchAPI)
 const updateTimes = (state, action) => {
@@ -31,7 +32,7 @@ const updateTimes = (state, action) => {
 
 const Main = () => {
   const [state, dispatch] = useReducer(updateTimes, []);
-  const [selectedDate, setSelectedDate] = useState('');
+  const [selectedDate, setSelectedDate] = React.useState('');
 
   console.log("type: " + typeof window.fetchAPI)
   useEffect(() => {
@@ -41,8 +42,7 @@ const Main = () => {
     } else {
       console.error("fetchAPI is not defined");
     }
-  }, [selectedDate]); 
-  console.log("date" + selectedDate)
+  }, [selectedDate]);
 
   const handleOptions = (date, time) => {
     dispatch({ type: 'SELECTED', payload: { date, time } });

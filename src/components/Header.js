@@ -2,7 +2,9 @@ import Navbar from "./Nav";
 function HeaderComp() {
     return(
         <header id="header">
-            <img src = "/images/Logo .svg" alt = "company logo"/>
+            <div className="logo">
+                <img src = "/images/Logo .svg" alt = "company logo"/>
+            </div>
             <Navbar />
         </header>
     )
