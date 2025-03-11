@@ -129,9 +129,10 @@ a:hover{
 }
 #hero-card > p{
   color:var(--sec-color-three);
+  text-align: justify;
 }
 #hero-card > button {
-  margin-top: 30px;
+  margin-top: 10px;
   background-color: var(--primary-color-two);
   border-radius: 16px;
   border: none;
@@ -172,6 +173,7 @@ a:hover{
   border:1px solid black;
   border-radius: 7px;
   overflow: hidden;
+  text-align: justify;
 }
 #menu-card  img {
   padding: none;
@@ -242,12 +244,16 @@ a:hover{
   flex-direction: column;
   gap: 10px;
   margin-left: 10px;
+  margin-bottom: 10px;
 }
 .about-text > h1 {
   color:var(--primary-color-one);
 }
 .about-text > h2 {
   color:var(--primary-color-one);
+}
+#about p {
+  text-align: justify;
 }
 .about-images {
   display: block;
@@ -355,6 +361,9 @@ footer  img {
   border-radius: 6px;
   border: none;
   text-align: left;
+  font-family: karla;
+  font-size: 12px;
+
 }
 label {
   text-align: left;

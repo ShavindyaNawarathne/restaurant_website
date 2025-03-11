@@ -10,7 +10,7 @@ export default function Bookingpage ({state, handleOptions, setSelectedDate, sub
                 <img src="/images/restaurant.jpg" alt="restaurant"/>
             </div>
             <div className='form-container'>
-                <h4 className='card-title'>Book your table</h4>
+                <h4 className="subtitle"><strong>Book your table</strong></h4>
                 <BookingForm state={state} handleOptions= {handleOptions} setSelectedDate = {setSelectedDate} submitForm = {submitForm}/>
             </div>
         </div>
