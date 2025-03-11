@@ -64,7 +64,7 @@ function BookingForm({ state, handleOptions, setSelectedDate, submitForm }) {
                         <option>Other</option>
                     </Field>
 
-                    <button type="submit" disabled={isSubmitting || !isValid || !dirty} aria-label="on Click">Submit</button>
+                    <button type="submit" disabled={isSubmitting || !isValid || !dirty} aria-label="on Click">{isSubmitting ? "Submitting..." : "Submit"}</button>
                 </Form>
             )}
         </Formik>
